@@ -11,26 +11,25 @@ class Pub:
         if customer.say_age() >= 18 and customer.drunkenness <= 4:
             self.till += drink.price
             customer.pay_for(drink)
-            #self.stock.remove(drink)
-            index = 0
-            while index < (len(self.stock) -1):
-                if self.stock[index].name == drink.name:
-                    break
-                index += 1
-            del(self.stock[index])
+            self.remove_stock(drink)
         elif customer.say_age() < 18:
             print("Sorry you are too young!")
         else:
             print("Sorry, you are too drunk!")
 
-    # def remove_drink_from_stock(self, sold_drink):
-    #     index = 0
-    #     #pdb.set_trace()
-    #     while index < len(self.stock["drinks"]):
-    #         if self.stock["drinks"][index].name == sold_drink.name:
-    #             break
-    #         index += 1
-    #     del(self.stock["drinks"][index])
+    def sell_food(self, food, customer):
+        customer.pay_for(food)
+        self.till += food.price
+        self.remove_stock(food)
+
+
+    def remove_stock(self, item):
+        index = 0
+        while index < (len(self.stock) -1):
+            if self.stock[index].name == item.name:
+                break
+            index += 1
+        del(self.stock[index])   
         
 
     def stock_value(self):

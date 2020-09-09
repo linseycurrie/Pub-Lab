@@ -1,4 +1,5 @@
 from src.food import Food
+from src.drink import Drink
 
 class Customer:
 
@@ -8,10 +9,12 @@ class Customer:
         self.age = age
         self.drunkenness = 0
 
-    def pay_for(self, drink):
-        self.wallet -= drink.price
-        self.drink(drink)
-
+    def pay_for(self, item):
+        self.wallet -= item.price
+        if isinstance(item, Drink):
+            self.drink(item)
+        else:
+            self.eat(item)
 
     def say_age(self):
         return self.age

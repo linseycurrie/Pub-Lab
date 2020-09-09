@@ -18,6 +18,7 @@ class TestPub(unittest.TestCase):
         self.customer = Customer("Bob", 50.00, 30)
         self.drink = self.pub.stock[0]
         self.young_customer = Customer("Betty", 20.00, 16)
+        self.food = Food("hotdog", 2.00, 5)
 
 
     def test_pub_has_name(self):
@@ -48,3 +49,8 @@ class TestPub(unittest.TestCase):
     def test_stock_value(self):
         self.pub.sell_drink(self.drink, self.customer)
         self.assertEqual(6.5, self.pub.stock_value())
+
+    def test_sell_food(self):
+        self.pub.sell_food(self.food, self.customer)
+        self.assertEqual(102.00 ,self.pub.till)
+        self.assertEqual(48.00, self.customer.wallet)
